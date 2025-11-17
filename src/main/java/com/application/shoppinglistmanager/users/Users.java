@@ -1,4 +1,4 @@
-package com.application.shoppinglistmanager.ingredients;
+package com.application.shoppinglistmanager.users;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,18 +15,16 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Ingredients {
-
-    //Constructor without ID (using the GenerationType.IDENTITY to add an id)
-    public Ingredients (String name) {
-        this.name = name;
-    }
-
+public class Users {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_ingredient")
-    private Integer idIngredient;
+    @Column(name="id_user")
+    private Integer idUser;
 
     private String name;
-    
+
+    private String email;
+
+    private String password;
 }
