@@ -1,3 +1,4 @@
+package com.application.shoppinglistmanager.ingredients;
 // package com.application.shoppinglistmanager.ingredient;
 
 // import org.springframework.boot.CommandLineRunner;

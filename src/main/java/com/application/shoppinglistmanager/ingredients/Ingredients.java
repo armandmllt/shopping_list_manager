@@ -1,4 +1,4 @@
-package com.application.shoppinglistmanager.ingredient;
+package com.application.shoppinglistmanager.ingredients;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,10 +14,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Ingredient {
+public class Ingredients {
 
     //Constructor without ID (using the GenerationType.IDENTITY to add an id)
-    public Ingredient (String name) {
+    public Ingredients (String name) {
         this.name = name;
     }
 

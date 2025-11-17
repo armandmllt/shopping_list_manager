@@ -1,4 +1,4 @@
-package com.application.shoppinglistmanager.ingredient;
+package com.application.shoppinglistmanager.ingredients;
 
 import java.util.List;
 
@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path="/ingredients")
-public class IngredientController {
+public class IngredientsController {
     
-    private final IngredientService ingredientService;
+    private final IngredientsService ingredientsService;
 
     @Autowired
-    private IngredientController (IngredientService ingredientService) {
-        this.ingredientService = ingredientService;
+    private IngredientsController (IngredientsService ingredientsService) {
+        this.ingredientsService = ingredientsService;
     }
 
     
     @GetMapping
-    public List<Ingredient> getAllIngredients() {
+    public List<Ingredients> getAllIngredients() {
 
-        return ingredientService.getAllIngredients();
+        return ingredientsService.getAllIngredients();
 
     }
 
