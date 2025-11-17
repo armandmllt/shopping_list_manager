@@ -16,6 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShoppingLists {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_list")
@@ -23,4 +24,9 @@ public class ShoppingLists {
 
     @Column(name="fk_user")
     private Integer fkUser;
+
+    //id-free creator
+    public ShoppingLists (Integer fkUser) {
+        this.fkUser = fkUser;
+    }
 }

@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Recipes {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_recipe")
@@ -26,4 +26,9 @@ public class Recipes {
 
     private String instructions;
 
+    //id-free creator
+    public Recipes (String name, String instructions) {
+        this.name = name;
+        this.instructions = instructions;
+    }
 }
