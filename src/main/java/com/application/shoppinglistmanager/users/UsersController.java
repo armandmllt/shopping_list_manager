@@ -19,7 +19,7 @@ public class UsersController {
     }
 
     @GetMapping
-    public List <Users> getAllUsers () {
+    public List <UsersDto> getAllUsers () {
         return usersService.getAllUsers();
     }
 

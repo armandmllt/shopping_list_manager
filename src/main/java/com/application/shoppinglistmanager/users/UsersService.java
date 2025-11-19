@@ -9,14 +9,16 @@ import org.springframework.stereotype.Service;
 public class UsersService {
     
     private final UsersRepository usersRepository;
+    private final UsersMapper usersMapper;
 
     @Autowired
-    public UsersService (UsersRepository usersRepository) {
+    public UsersService (UsersRepository usersRepository, UsersMapper userMapper) {
         this.usersRepository = usersRepository;
+        this.usersMapper = userMapper;
     }
 
-    public List<Users> getAllUsers () {
-        return usersRepository.findAll();
+    public List<UsersDto> getAllUsers () {
+        List<Users> allUsers = usersRepository.findAll();
+        return usersMapper.fromUsersToDtos(allUsers);
     }
-
 }
