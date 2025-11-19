@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class shoppingListsService {
+public class ShoppingListsService {
 
     private final ShoppingListsRepository shoppingListsRepository;
 
     @Autowired
-    public shoppingListsService (ShoppingListsRepository shoppingListsRepository) {
+    public ShoppingListsService (ShoppingListsRepository shoppingListsRepository) {
         this.shoppingListsRepository = shoppingListsRepository;
     }
 

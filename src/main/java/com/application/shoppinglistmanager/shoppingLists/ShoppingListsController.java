@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path="/lists")
 public class ShoppingListsController {
     
-    private final shoppingListsService shoppingListsService;
+    private final ShoppingListsService shoppingListsService;
 
     @Autowired
-    private ShoppingListsController (shoppingListsService shoppingListsService) {
+    private ShoppingListsController (ShoppingListsService shoppingListsService) {
         this.shoppingListsService = shoppingListsService;
     }
 
