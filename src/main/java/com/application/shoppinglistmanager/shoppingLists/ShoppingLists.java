@@ -1,10 +1,14 @@
 package com.application.shoppinglistmanager.shoppingLists;
 
+import com.application.shoppinglistmanager.users.Users;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,11 +26,13 @@ public class ShoppingLists {
     @Column(name="id_list")
     private Integer idList;
 
-    @Column(name="fk_user")
-    private Integer fkUser;
+    @OneToOne //Add CASCADE-TYPE + FetchType ?
+    @JoinColumn(name="fk_user", referencedColumnName = "id_user")
+    
+    private Users fkUser;
 
     //id-free creator
-    public ShoppingLists (Integer fkUser) {
-        this.fkUser = fkUser;
+    public ShoppingLists (Users user) {
+        this.fkUser = user;
     }
 }

@@ -1,10 +1,15 @@
 package com.application.shoppinglistmanager.shoppingListRecipes;
 
+import com.application.shoppinglistmanager.recipes.Recipes;
+import com.application.shoppinglistmanager.shoppingLists.ShoppingLists;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,18 +27,20 @@ public class ShoppingListRecipes {
     @Column(name="id_shopping_list_recipe")
     private Integer idShoppingListRecipe;
 
-    @Column(name="fk_shopping_list")
-    private Integer fkShoppingList;
+    @ManyToOne //Add CASCADE-TYPE + FetchType ?
+    @JoinColumn(name="fk_shopping_list", referencedColumnName = "id_list") 
+    private ShoppingLists shoppingList;
 
-    @Column(name="fk_recipe")
-    private Integer fkRecipe;
+    @ManyToOne //Add CASCADE-TYPE + FetchType ?
+    @JoinColumn(name="fk_recipe", referencedColumnName = "id_recipe")
+    private Recipes recipe;
 
     private Integer servings;
     
     //id-free creator
-    public ShoppingListRecipes (Integer fkShoppingList, Integer fkRecipe, Integer servings) {
-        this.fkShoppingList = fkShoppingList;
-        this.fkRecipe = fkRecipe;
+    public ShoppingListRecipes (ShoppingLists fkShoppingList, Recipes fkRecipe, Integer servings) {
+        this.shoppingList = fkShoppingList;
+        this.recipe = fkRecipe;
         this.servings = servings;
     }
 }
