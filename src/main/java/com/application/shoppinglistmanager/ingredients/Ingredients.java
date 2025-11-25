@@ -28,5 +28,8 @@ public class Ingredients {
     private Integer idIngredient;
 
     private String name;
+
+    // @OneToMany(mappedBy = "ingredient")
+    // private List<RecipeIngredients> recipes;
     
 }

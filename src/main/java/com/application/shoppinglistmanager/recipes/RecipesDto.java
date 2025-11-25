@@ -16,7 +16,9 @@ import lombok.Setter;
 public class RecipesDto {
     private Integer id;
 
-    private List<IngredientsDto> ingredients;
-
     private String name;
+
+    private Integer servings;
+
+    private List<IngredientsDto> ingredients;
 }

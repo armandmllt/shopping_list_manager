@@ -28,11 +28,13 @@ public class ShoppingLists {
 
     @OneToOne //Add CASCADE-TYPE + FetchType ?
     @JoinColumn(name="fk_user", referencedColumnName = "id_user")
-    
-    private Users fkUser;
+    private Users user;
+
+    // @OneToMany(mappedBy = "shoppingList")
+    // private List<ShoppingListRecipes> recipes;
 
     //id-free creator
     public ShoppingLists (Users user) {
-        this.fkUser = user;
+        this.user = user;
     }
 }

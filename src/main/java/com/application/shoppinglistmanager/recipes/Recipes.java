@@ -26,6 +26,12 @@ public class Recipes {
 
     private String instructions;
 
+    // @OneToMany(mappedBy = "recipe")
+    // private List<ShoppingListRecipes> shoppingLists;
+
+    // @OneToMany(mappedBy = "recipe")
+    // private List<RecipeIngredients> ingredients;
+
     //id-free creator
     public Recipes (String name, String instructions) {
         this.name = name;

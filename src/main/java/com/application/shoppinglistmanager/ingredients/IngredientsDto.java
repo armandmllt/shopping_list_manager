@@ -14,4 +14,8 @@ public class IngredientsDto {
     private Integer id;
 
     private String name;
+
+    private Integer quantity;
+
+    private String unit;
 }
