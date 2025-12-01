@@ -1,5 +1,8 @@
 package com.application.shoppinglistmanager.shoppingLists;
 
+import java.util.List;
+
+import com.application.shoppinglistmanager.shoppingListRecipes.ShoppingListRecipes;
 import com.application.shoppinglistmanager.users.Users;
 
 import jakarta.persistence.Column;
@@ -8,17 +11,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"shoppingListRecipes"})
 public class ShoppingLists {
 
     @Id
@@ -30,8 +36,8 @@ public class ShoppingLists {
     @JoinColumn(name="fk_user", referencedColumnName = "id_user")
     private Users user;
 
-    // @OneToMany(mappedBy = "shoppingList")
-    // private List<ShoppingListRecipes> recipes;
+    @OneToMany(mappedBy = "shoppingList")
+    private List<ShoppingListRecipes> shoppingListRecipes;
 
     //id-free creator
     public ShoppingLists (Users user) {

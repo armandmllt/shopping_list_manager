@@ -5,6 +5,7 @@ import com.application.shoppinglistmanager.shoppingLists.ShoppingLists;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,11 +28,11 @@ public class ShoppingListRecipes {
     @Column(name="id_shopping_list_recipe")
     private Integer idShoppingListRecipe;
 
-    @ManyToOne //Add CASCADE-TYPE + FetchType ?
+    @ManyToOne(fetch = FetchType.LAZY) //Add CASCADE-TYPE + FetchType ?
     @JoinColumn(name="fk_shopping_list", referencedColumnName = "id_list") 
     private ShoppingLists shoppingList;
 
-    @ManyToOne //Add CASCADE-TYPE + FetchType ?
+    @ManyToOne(fetch = FetchType.EAGER) //Add CASCADE-TYPE + FetchType ?
     @JoinColumn(name="fk_recipe", referencedColumnName = "id_recipe")
     private Recipes recipe;
 

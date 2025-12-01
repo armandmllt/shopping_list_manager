@@ -1,20 +1,27 @@
 package com.application.shoppinglistmanager.ingredients;
 
+import java.util.List;
+
+import com.application.shoppinglistmanager.recipeIngredients.RecipeIngredients;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"recipes"})
 public class Ingredients {
 
     //Constructor without ID (using the GenerationType.IDENTITY to add an id)
@@ -29,7 +36,7 @@ public class Ingredients {
 
     private String name;
 
-    // @OneToMany(mappedBy = "ingredient")
-    // private List<RecipeIngredients> recipes;
+    @OneToMany(mappedBy = "ingredient")
+    private List<RecipeIngredients> recipes;
     
 }

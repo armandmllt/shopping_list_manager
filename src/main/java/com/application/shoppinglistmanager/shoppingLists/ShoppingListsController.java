@@ -7,22 +7,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.application.shoppinglistmanager.shoppingListRecipes.ShoppingListRecipes;
+import com.application.shoppinglistmanager.shoppingListRecipes.ShoppingListRecipesRepository;
+
 @RestController
 @RequestMapping(path="/lists")
 public class ShoppingListsController {
     
     private final ShoppingListsService shoppingListsService;
+    private final ShoppingListRecipesRepository repo;
 
     @Autowired
-    private ShoppingListsController (ShoppingListsService shoppingListsService) {
+    private ShoppingListsController (ShoppingListsService shoppingListsService, ShoppingListRecipesRepository repo) {
         this.shoppingListsService = shoppingListsService;
+        this.repo = repo;
     }
 
     @GetMapping
-    public List<ShoppingLists> getAllShoppingLists () {
-        
-        return shoppingListsService.getAllShoppingLists();
-
+    public List<ShoppingListsDto> getAllShoppingLists () {
+    // 
+        return shoppingListsService.getAllShoppingListsDtos();
     }
 
+    // @GetMapping
+    // public List<ShoppingLists> getAllShoppingLists () {
+    //     return shoppingListsService.getAllShoppingLists();
+    // }
 }
