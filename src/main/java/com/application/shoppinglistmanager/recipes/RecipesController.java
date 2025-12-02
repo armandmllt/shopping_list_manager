@@ -18,9 +18,14 @@ public class RecipesController {
         this.recipesService = recipesService;
     }
 
+    // @GetMapping
+    // public List<Recipes> getAllRecipes () {
+    //     return recipesService.getAllRecipes();
+    // }
+
     @GetMapping
-    public List<Recipes> getAllRecipes () {
-        return recipesService.getAllRecipes();
+    public List<RecipesDto> geetAllRecipesDtos () {
+        return recipesService.getAllRecipesDtos();
     }
 
 }
