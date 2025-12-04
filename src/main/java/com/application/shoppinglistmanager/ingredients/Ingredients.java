@@ -2,7 +2,7 @@ package com.application.shoppinglistmanager.ingredients;
 
 import java.util.List;
 
-import com.application.shoppinglistmanager.recipeIngredients.RecipeIngredients;
+import com.application.shoppinglistmanager.recipe_ingredients.RecipeIngredients;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

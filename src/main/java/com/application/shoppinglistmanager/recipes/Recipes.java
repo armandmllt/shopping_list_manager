@@ -2,8 +2,8 @@ package com.application.shoppinglistmanager.recipes;
 
 import java.util.List;
 
-import com.application.shoppinglistmanager.recipeIngredients.RecipeIngredients;
-import com.application.shoppinglistmanager.shoppingListRecipes.ShoppingListRecipes;
+import com.application.shoppinglistmanager.recipe_ingredients.RecipeIngredients;
+import com.application.shoppinglistmanager.shopping_list_recipes.ShoppingListRecipes;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,14 +15,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"ShoppingLists", "ingredients"})
 public class Recipes {
 
     @Id

@@ -1,8 +1,8 @@
-package com.application.shoppinglistmanager.shoppingLists;
+package com.application.shoppinglistmanager.shopping_lists;
 
 import java.util.List;
 
-import com.application.shoppinglistmanager.shoppingListRecipes.ShoppingListRecipes;
+import com.application.shoppinglistmanager.shopping_list_recipes.ShoppingListRecipes;
 import com.application.shoppinglistmanager.users.Users;
 
 import jakarta.persistence.Column;

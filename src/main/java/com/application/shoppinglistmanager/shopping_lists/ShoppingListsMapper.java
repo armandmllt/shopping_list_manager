@@ -1,16 +1,14 @@
-package com.application.shoppinglistmanager.shoppingLists;
+package com.application.shoppinglistmanager.shopping_lists;
 
 import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.application.shoppinglistmanager.recipes.Recipes;
 import com.application.shoppinglistmanager.recipes.RecipesDto;
 import com.application.shoppinglistmanager.recipes.RecipesMapper;
-import com.application.shoppinglistmanager.shoppingListRecipes.ShoppingListRecipes;
+import com.application.shoppinglistmanager.shopping_list_recipes.ShoppingListRecipes;
 import com.application.shoppinglistmanager.users.UsersMapper;
 
 @Mapper(componentModel = "spring", uses = {UsersMapper.class, RecipesMapper.class})

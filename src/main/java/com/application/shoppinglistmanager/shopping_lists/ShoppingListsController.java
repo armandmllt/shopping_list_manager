@@ -1,4 +1,4 @@
-package com.application.shoppinglistmanager.shoppingLists;
+package com.application.shoppinglistmanager.shopping_lists;
 
 import java.util.List;
 
@@ -7,20 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.application.shoppinglistmanager.shoppingListRecipes.ShoppingListRecipes;
-import com.application.shoppinglistmanager.shoppingListRecipes.ShoppingListRecipesRepository;
+import com.application.shoppinglistmanager.shopping_list_recipes.ShoppingListRecipesRepository;
 
 @RestController
 @RequestMapping(path="/lists")
 public class ShoppingListsController {
     
     private final ShoppingListsService shoppingListsService;
-    private final ShoppingListRecipesRepository repo;
 
     @Autowired
     private ShoppingListsController (ShoppingListsService shoppingListsService, ShoppingListRecipesRepository repo) {
         this.shoppingListsService = shoppingListsService;
-        this.repo = repo;
     }
 
     @GetMapping

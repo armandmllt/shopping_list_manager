@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 import com.application.shoppinglistmanager.ingredients.Ingredients;
 import com.application.shoppinglistmanager.ingredients.IngredientsDto;
 import com.application.shoppinglistmanager.ingredients.IngredientsMapper;
-import com.application.shoppinglistmanager.recipeIngredients.RecipeIngredients;
+import com.application.shoppinglistmanager.recipe_ingredients.RecipeIngredients;
 @Mapper(componentModel = "spring", uses = {IngredientsMapper.class})
 public interface RecipesMapper {
 

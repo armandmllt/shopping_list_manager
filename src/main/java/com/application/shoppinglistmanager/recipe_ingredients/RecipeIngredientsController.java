@@ -1,4 +1,4 @@
-package com.application.shoppinglistmanager.recipeIngredients;
+package com.application.shoppinglistmanager.recipe_ingredients;
 
 import java.util.List;
 

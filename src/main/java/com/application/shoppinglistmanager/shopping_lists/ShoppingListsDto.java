@@ -1,4 +1,4 @@
-package com.application.shoppinglistmanager.shoppingLists;
+package com.application.shoppinglistmanager.shopping_lists;
 
 import java.util.List;
 

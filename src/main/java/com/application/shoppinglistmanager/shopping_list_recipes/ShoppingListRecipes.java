@@ -1,11 +1,10 @@
-package com.application.shoppinglistmanager.shoppingListRecipes;
+package com.application.shoppinglistmanager.shopping_list_recipes;
 
 import com.application.shoppinglistmanager.recipes.Recipes;
-import com.application.shoppinglistmanager.shoppingLists.ShoppingLists;
+import com.application.shoppinglistmanager.shopping_lists.ShoppingLists;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;

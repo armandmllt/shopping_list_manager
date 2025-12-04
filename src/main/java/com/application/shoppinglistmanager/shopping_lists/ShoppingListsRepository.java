@@ -1,4 +1,4 @@
-package com.application.shoppinglistmanager.shoppingLists;
+package com.application.shoppinglistmanager.shopping_lists;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
