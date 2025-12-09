@@ -8,19 +8,12 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface UsersMapper {
     
-    @Mapping(source = "idUser", target = "id")
+    @Mapping(source = "id", target = "id")
     UsersDto fromUserToDto (Users entity);
 
-    @Mapping(source = "id", target = "idUser")
+    @Mapping(source = "id", target = "id")
     Users fromDtoToUser (UsersDto dto);
 
     List<UsersDto> fromUsersToDtos(List<Users> entities);
     List<Users> fromDtosToUsers(List<UsersDto> dtos);
 }
-
-
-    // @Mapping(source = "idUser", target = "idDto")
-    // List<UsersDto> fromUsersToDtos (List<Users> usersList);
-
-    // @Mapping(source = "idDto", target = "idUser")
-    // List<Users> fromDtosToUsers (List<UsersDto> dtosList);
