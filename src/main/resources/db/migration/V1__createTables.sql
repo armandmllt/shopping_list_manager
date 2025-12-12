@@ -1,12 +1,12 @@
 CREATE TABLE `users` (
-  `id_user` int PRIMARY KEY,
+  `id_user` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(50),
   `email` varchar(255),
   `password` varchar(255)
 );
 
 CREATE TABLE `shopping_lists` (
-  `id_list` int PRIMARY KEY,
+  `id_list` int PRIMARY KEY AUTO_INCREMENT,
   `fk_user` int
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE `shopping_list_recipes` (
 );
 
 CREATE TABLE `recipes` (
-  `id_recipe` int PRIMARY KEY,
+  `id_recipe` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `instructions` text
 );
@@ -32,7 +32,7 @@ CREATE TABLE `recipe_ingredients` (
 );
 
 CREATE TABLE `ingredients` (
-  `id_ingredient` int PRIMARY KEY,
+  `id_ingredient` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255)
 );
 
