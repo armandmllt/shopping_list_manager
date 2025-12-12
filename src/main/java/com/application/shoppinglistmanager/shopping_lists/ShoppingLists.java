@@ -5,6 +5,7 @@ import java.util.List;
 import com.application.shoppinglistmanager.shopping_list_recipes.ShoppingListRecipes;
 import com.application.shoppinglistmanager.users.Users;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class ShoppingLists {
     @JoinColumn(name="fk_user", referencedColumnName = "id_user")
     private Users user;
 
-    @OneToMany(mappedBy = "shoppingList")
+    @OneToMany(mappedBy = "shoppingList", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ShoppingListRecipes> shoppingListRecipes;
 
     //id-free creator
