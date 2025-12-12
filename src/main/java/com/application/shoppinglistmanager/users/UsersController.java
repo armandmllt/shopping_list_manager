@@ -2,7 +2,6 @@ package com.application.shoppinglistmanager.users;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +47,7 @@ public class UsersController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity deleteUserById (@PathVariable Integer id) {
+    public ResponseEntity<String> deleteUserById (@PathVariable Integer id) {
         usersService.deleteUserById(id);
         //returns httpStatus 204 NO CONTENT
         return ResponseEntity.noContent().build();
