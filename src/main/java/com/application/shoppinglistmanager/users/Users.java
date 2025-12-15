@@ -2,7 +2,6 @@ package com.application.shoppinglistmanager.users;
 
 import com.application.shoppinglistmanager.shopping_lists.ShoppingLists;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
