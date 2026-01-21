@@ -44,6 +44,7 @@ public class UsersService {
     }
 
     //ADD EXCEPTION MANAGEMENT
+    //aka check if user's email already exists
     public UsersDto createUser (UsersDto user) {
         Users userToSave = usersMapper.fromDtoToUser(user);
         Users savedUser =  usersRepository.save(userToSave);
