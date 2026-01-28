@@ -2,7 +2,6 @@ package com.application.shoppinglistmanager.integration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -18,7 +17,7 @@ import com.application.shoppinglistmanager.users.UsersRepository;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class usersIntegrationTest {
+class UsersIntegrationTest {
     
     @Autowired
     private MockMvc mockMvc;

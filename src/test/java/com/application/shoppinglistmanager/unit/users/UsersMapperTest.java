@@ -9,12 +9,12 @@ import com.application.shoppinglistmanager.users.Users;
 import com.application.shoppinglistmanager.users.UsersDto;
 import com.application.shoppinglistmanager.users.UsersMapper;
 
-public class UsersMapperTest {
+class UsersMapperTest {
 
     private UsersMapper underTest = Mappers.getMapper(UsersMapper.class);
     
     @Test
-    public void canMapFromEntityToDto () {
+    void canMapFromEntityToDto () {
 
         //given 
         UsersDto dto = new UsersDto(
