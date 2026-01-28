@@ -33,7 +33,7 @@ public interface RecipesMapper {
 
     default List<IngredientsDto> extractIngredient(List<RecipeIngredients> list) {
         return list.stream().map(slr -> {
-            IngredientsDto ingredientDto = ingredientMapper.fromIngredientToDto(slr.getIngredient());
+            IngredientsDto ingredientDto = ingredientMapper.toDto(slr.getIngredient());
                 ingredientDto.setQuantity(slr.getQuantity());
                 ingredientDto.setUnit(slr.getUnit());
                 return ingredientDto;
