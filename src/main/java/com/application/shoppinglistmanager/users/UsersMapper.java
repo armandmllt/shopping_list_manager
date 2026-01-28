@@ -9,11 +9,11 @@ import org.mapstruct.Mapping;
 public interface UsersMapper {
     
     @Mapping(source = "id", target = "id")
-    UsersDto fromUserToDto (Users entity);
+    UsersDto toDto (Users entity);
 
     @Mapping(source = "id", target = "id")
-    Users fromDtoToUser (UsersDto dto);
+    Users toUser (UsersDto dto);
 
-    List<UsersDto> fromUsersToDtos(List<Users> entities);
-    List<Users> fromDtosToUsers(List<UsersDto> dtos);
+    List<UsersDto> toDtos(List<Users> entities);
+    List<Users> toUsers(List<UsersDto> dtos);
 }

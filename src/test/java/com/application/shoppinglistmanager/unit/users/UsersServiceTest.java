@@ -1,4 +1,4 @@
-package com.application.shoppinglistmanager.users;
+package com.application.shoppinglistmanager.unit.users;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,6 +18,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.application.shoppinglistmanager.shopping_lists.ShoppingListsRepository;
+import com.application.shoppinglistmanager.users.Users;
+import com.application.shoppinglistmanager.users.UsersDto;
+import com.application.shoppinglistmanager.users.UsersMapper;
+import com.application.shoppinglistmanager.users.UsersRepository;
+import com.application.shoppinglistmanager.users.UsersService;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -157,7 +162,7 @@ class UsersServiceTest {
 
         //Stubbing the mapper's behavior even though it's not called here
         //because it's called within the service
-        when(usersMapper.fromDtoToUser(userDto))
+        when(usersMapper.toUser(userDto))
             .thenReturn(savedUser);
 
         // when
@@ -201,7 +206,7 @@ class UsersServiceTest {
 
         //stubbing the mapper's behavior because it's called within the service
         //We give any Users as an argument to decouple the service from the mapper
-        when(usersMapper.fromUserToDto(any(Users.class)))
+        when(usersMapper.toDto(any(Users.class)))
             .thenReturn(userToUpdate);
 
         // when
@@ -242,8 +247,8 @@ class UsersServiceTest {
         );
 
         // when + then
-        IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class,                         // the exception thrown
+        EntityNotFoundException exception = assertThrows(
+            EntityNotFoundException.class,                         // the exception thrown
             () -> underTest.updateUserById(id, updatedUserDto)      // the code that throws the exception
         );
 
@@ -261,8 +266,13 @@ class UsersServiceTest {
         //given 
         Integer id = 1;
 
-        // when(usersRepository.deleteById(id))
-        //     .thenReturn(void);
+        when(usersRepository.findById(id))
+            .thenReturn(Optional.of(new Users(
+                id,
+                "radahn",
+                "radahn@lovemiquella.com",
+                "password"
+        )));
 
         //when
         underTest.deleteUserById(id);
@@ -278,7 +288,13 @@ class UsersServiceTest {
         //given
         Integer id = 1;
 
-        //when + then
-        assertThrows( null, null);
+        // when + then
+        EntityNotFoundException exception = assertThrows(
+            EntityNotFoundException.class,     // the exception thrown
+            () -> underTest.deleteUserById(id)              // the code that throws the exception
+        );
+
+        assertThat(exception.getMessage()).contains("Pas d'utilisateur d'id " + id + " trouvé en BDD");
+        verify(usersRepository, never()).save(any());
     }
 }

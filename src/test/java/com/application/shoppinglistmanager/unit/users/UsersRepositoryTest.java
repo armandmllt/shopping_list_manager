@@ -1,4 +1,4 @@
-package com.application.shoppinglistmanager.users;
+package com.application.shoppinglistmanager.unit.users;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,6 +8,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import com.application.shoppinglistmanager.users.Users;
+import com.application.shoppinglistmanager.users.UsersRepository;
 
 @DataJpaTest
 class UsersRepositoryTest {
