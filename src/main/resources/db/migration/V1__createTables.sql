@@ -24,7 +24,7 @@ CREATE TABLE `recipes` (
 );
 
 CREATE TABLE `recipe_ingredients` (
-  `id_recipe_ingredient` int PRIMARY KEY,
+  `id_recipe_ingredient` int PRIMARY KEY AUTO_INCREMENT,
   `fk_recipe` int,
   `fk_ingredient` int,
   `quantity` int,

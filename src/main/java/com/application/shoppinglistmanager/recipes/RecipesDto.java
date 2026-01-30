@@ -18,6 +18,8 @@ public class RecipesDto {
 
     private String name;
 
+    private String instructions;
+
     private Integer servings;
 
     private List<IngredientsDto> ingredients;

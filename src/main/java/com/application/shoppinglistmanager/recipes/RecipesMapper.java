@@ -16,20 +16,46 @@ public interface RecipesMapper {
     IngredientsMapper ingredientMapper = Mappers.getMapper(IngredientsMapper.class);
 
     @Mapping(source = "idRecipe", target = "id")
-    RecipesDto fromRecipeToDto (Recipes entity); 
+    RecipesDto toDto (Recipes entity); 
 
-    List<RecipesDto> fromRecipesToDtos (List<Recipes> entities);
+    List<RecipesDto> toDtos (List<Recipes> entities);
 
     @Mapping(source = "id", target = "idRecipe")
-    Recipes fromDtoToRecipe (RecipesDto dto);
+    @Mapping(target = "ingredients", ignore = true)
+    Recipes toRecipe (RecipesDto dto);
 
-    List<Recipes> fromDtosToRecipes (List<RecipesDto> dtos);
+    List<Recipes> toRecipes (List<RecipesDto> dtos);
 
-    default List<Ingredients> extractIngredients(List<RecipeIngredients> list) {
-    return list.stream()
-               .map(RecipeIngredients::getIngredient)
-               .toList();
+
+
+    default List<IngredientsDto> mapIngredients(List<RecipeIngredients> list) {
+        if (list == null) return List.of();
+
+        return list.stream().map(ri -> {
+            Ingredients ingredient = ri.getIngredient();
+
+            IngredientsDto dto = new IngredientsDto();
+            dto.setId(ingredient.getIdIngredient());
+            dto.setName(ingredient.getName());
+            dto.setQuantity(ri.getQuantity());
+            dto.setUnit(ri.getUnit());
+
+            return dto;
+        }).toList();
     }
+    
+
+
+    // default List<Ingredients> extractIngredients(List<RecipeIngredients> list) {
+    // return list.stream()
+    //            .map(RecipeIngredients::getIngredient)
+    //            .toList();
+    // }
+
+    /*
+    This causes a problem when POSTING a recipe. The service creates new ingredients and manually links
+    them to the recipe (through RecipeIngredients). This creates extra links, causing to have DOUBLE the
+    number of ingredients in Recipe.
 
     default List<IngredientsDto> extractIngredient(List<RecipeIngredients> list) {
         return list.stream().map(slr -> {
@@ -39,4 +65,5 @@ public interface RecipesMapper {
                 return ingredientDto;
             }).toList();
     }
+    */
 }

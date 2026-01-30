@@ -17,4 +17,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new CustomError(HttpStatus.NOT_FOUND, exception.getMessage());
     }
 
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(IngredientNotFoundException.class)
+    public CustomError handleIngredientNotFoundException (IngredientNotFoundException exception) {
+        return new CustomError(HttpStatus.UNPROCESSABLE_ENTITY, exception.getMessage());
+    }
+
 }

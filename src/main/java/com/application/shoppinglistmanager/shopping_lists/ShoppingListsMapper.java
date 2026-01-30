@@ -25,7 +25,7 @@ public interface ShoppingListsMapper {
 
     default List<RecipesDto> extractRecipes(List<ShoppingListRecipes> list) {
     return list.stream().map(slr -> {
-        RecipesDto recipeDto = recipesMapper.fromRecipeToDto(slr.getRecipe());
+        RecipesDto recipeDto = recipesMapper.toDto(slr.getRecipe());
             recipeDto.setServings(slr.getServings());
             return recipeDto;
         }).toList();

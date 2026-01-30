@@ -46,4 +46,10 @@ public class RecipeIngredients {
         this.quantity = quantity;
         this.unit = unit;
     }
+
+    public RecipeIngredients (Ingredients ingredient, Integer quantity, String unit) {
+        this.ingredient = ingredient;
+        this.quantity = quantity;
+        this.unit = unit;
+    }
 }
