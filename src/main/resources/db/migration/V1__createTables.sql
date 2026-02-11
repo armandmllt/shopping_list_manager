@@ -25,8 +25,8 @@ CREATE TABLE `recipes` (
 
 CREATE TABLE `recipe_ingredients` (
   `id_recipe_ingredient` int PRIMARY KEY AUTO_INCREMENT,
-  `fk_recipe` int,
-  `fk_ingredient` int,
+  `fk_recipe` int NOT NULL,
+  `fk_ingredient` int NOT NULL,
   `quantity` int,
   `unit` varchar(10)
 );

@@ -37,6 +37,11 @@ public class RecipesController {
         return ResponseEntity.ok(recipe);
     }
 
+    /*
+    Note : it is possible, in the POST request's body, to only send each ingredient's id and not the ingredient's name
+    Because in the service layer, each ingredient is fetched from the DB by its id 
+    IMPORTANT : the quantity and unit of each ingredients is obviously still required
+    */
     @PostMapping
     public ResponseEntity<RecipesDto> createRecipe (@RequestBody RecipesDto recipe) {
         RecipesDto createdRecipe = recipesService.createRecipe(recipe);
@@ -44,20 +49,13 @@ public class RecipesController {
             .status(HttpStatus.CREATED)
             .body(createdRecipe);
     }
-    // @PostMapping
-    // public ResponseEntity<Recipes> createRecipe (@RequestBody RecipesDto recipe) {
-    //     Recipes createdRecipe = recipesService.createRecipe(recipe);
-    //     return ResponseEntity
-    //         .status(HttpStatus.CREATED)
-    //         .body(createdRecipe);
-    // }
 
-    // @DeleteMapping(path = "/{id}")
-    // public ResponseEntity<String> deleteRecipeById (@PathVariable Integer id) {
-    //     RecipesService.deleteRecipeById(id);
-    //     //returns httpStatus 204 NO CONTENT
-    //     return ResponseEntity.noContent().build();
-    // }
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<String> deleteRecipeById (@PathVariable Integer id) {
+        recipesService.deleteRecipeById(id);
+        //returns httpStatus 204 NO CONTENT
+        return ResponseEntity.noContent().build();
+    }
 
     // @PutMapping(path = "/{id}")
     // public ResponseEntity<RecipesDto> updateRecipeById (@RequestBody RecipesDto recipe, @PathVariable Integer id) {

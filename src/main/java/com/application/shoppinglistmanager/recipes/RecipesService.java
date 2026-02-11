@@ -1,6 +1,5 @@
 package com.application.shoppinglistmanager.recipes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.application.shoppinglistmanager.exception.IngredientNotFoundException;
 import com.application.shoppinglistmanager.ingredients.Ingredients;
 import com.application.shoppinglistmanager.ingredients.IngredientsDto;
-import com.application.shoppinglistmanager.ingredients.IngredientsMapper;
 import com.application.shoppinglistmanager.ingredients.IngredientsRepository;
 import com.application.shoppinglistmanager.recipe_ingredients.RecipeIngredients;
 
@@ -21,15 +19,14 @@ public class RecipesService {
     private final RecipesRepository recipesRepository;
     private final RecipesMapper recipesMapper;
     private final IngredientsRepository ingredientsRepository;
-    private final IngredientsMapper ingredientsMapper;
 
     @Autowired
-    public RecipesService (RecipesRepository recipesRepository, RecipesMapper recipesMapper,
-                           IngredientsRepository ingredientsRepository, IngredientsMapper ingredientsMapper) {
+    public RecipesService (RecipesRepository recipesRepository, 
+                           RecipesMapper recipesMapper,
+                           IngredientsRepository ingredientsRepository) {
         this.recipesRepository = recipesRepository;
         this.recipesMapper = recipesMapper;
         this.ingredientsRepository = ingredientsRepository;
-        this.ingredientsMapper = ingredientsMapper;
     }
 
     public List<RecipesDto> getAllRecipes () {
@@ -67,6 +64,14 @@ public class RecipesService {
 
         Recipes savedRecipe = recipesRepository.save(recipeToSave);
         return recipesMapper.toDto(savedRecipe);
+    }
+
+    public void deleteRecipeById(Integer recipeId) {
+        //TODO check that works also for recipes linked with a shopping list (not the case just yet, must be a mapping error)
+        Recipes recipe = recipesRepository.findById(recipeId).orElseThrow(
+            () -> new EntityNotFoundException("Pas de recette d'id " + recipeId + " trouvée en BDD ?")
+        );
+        recipesRepository.delete(recipe);
     }
 
 }

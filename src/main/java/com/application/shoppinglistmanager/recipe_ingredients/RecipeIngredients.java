@@ -27,11 +27,11 @@ public class RecipeIngredients {
     @Column(name="id_recipe_ingredient")
     private Integer idRecipeIngredient;
 
-    @ManyToOne //(fetch = FetchType.EAGER) //Add CASCADE-TYPE + FetchType ?
+    @ManyToOne //(fetch = FetchType.EAGER)
     @JoinColumn(name="fk_recipe", referencedColumnName = "id_recipe")
     private Recipes recipe;
 
-    @ManyToOne //(fetch = FetchType.EAGER) //Add CASCADE-TYPE + FetchType ?
+    @ManyToOne //(fetch = FetchType.EAGER)
     @JoinColumn(name="fk_ingredient", referencedColumnName = "id_ingredient")
     private Ingredients ingredient;
 

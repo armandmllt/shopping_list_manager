@@ -37,7 +37,9 @@ public class Recipes {
     @OneToMany(mappedBy = "recipe")
     private List<ShoppingListRecipes> shoppingListRecipes;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true) //chatgpt says CascadeType.ALL and orphanRemoval = true, try maybe later
+    @OneToMany(mappedBy = "recipe", 
+               cascade = CascadeType.ALL, 
+               orphanRemoval = true)
     private List<RecipeIngredients> ingredients = new ArrayList<>();
     /*Note : new ArrayList<>() initializes the array. It allows that when doing ingredients.add() (in addIngredient method)
     there isn't a null pointer exception when trying to add an element to an inexisting list*/
