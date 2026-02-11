@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.persistence.EntityNotFoundException;
+import com.application.shoppinglistmanager.exception.IngredientNotFoundException;
 
 @Service
 public class IngredientsService {
@@ -26,14 +26,14 @@ public class IngredientsService {
 
     public IngredientsDto getIngredientById(Integer ingredientId) {
         Ingredients ingredient =  ingredientsRepository.findById(ingredientId).orElseThrow(
-            () -> new EntityNotFoundException("Pas d'ingrédient d'id " + ingredientId + " trouvé en BDD.")
+            () -> new IngredientNotFoundException(ingredientId)
         );
         return ingredientsMapper.toDto(ingredient);
     }
 
     public IngredientsDto updateIngredientById(Integer ingredientId, IngredientsDto ingredient) {
         Ingredients existingIngredient = ingredientsRepository.findById(ingredientId).orElseThrow(
-            () -> new EntityNotFoundException("Pas d'ingrédient d'id " + ingredientId + " trouvé en BDD.")
+            () -> new IngredientNotFoundException(ingredientId)
             );
         
         existingIngredient.setName(ingredient.getName());
@@ -48,8 +48,9 @@ public class IngredientsService {
     }
 
     public void deleteIngredientById(Integer ingredientId) {
+        //TODO fix this, it breaks
         if (ingredientsRepository.findById(ingredientId).isEmpty()) {
-            throw new EntityNotFoundException("Pas d'ingrédient d'id " + ingredientId + " trouvé en BDD.");
+            throw new IngredientNotFoundException(ingredientId);
         }
         ingredientsRepository.deleteById(ingredientId);
     }

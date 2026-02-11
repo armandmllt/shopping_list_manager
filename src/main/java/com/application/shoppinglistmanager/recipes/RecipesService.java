@@ -5,13 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.application.shoppinglistmanager.exception.IngredientNotFoundException;
+import com.application.shoppinglistmanager.exception.IncorrectIngredientException;
+import com.application.shoppinglistmanager.exception.RecipeNotFoundException;
 import com.application.shoppinglistmanager.ingredients.Ingredients;
 import com.application.shoppinglistmanager.ingredients.IngredientsDto;
 import com.application.shoppinglistmanager.ingredients.IngredientsRepository;
 import com.application.shoppinglistmanager.recipe_ingredients.RecipeIngredients;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class RecipesService {
@@ -36,7 +35,7 @@ public class RecipesService {
 
     public RecipesDto getRecipeById (Integer recipeId) {
         Recipes recipe = recipesRepository.findById(recipeId).orElseThrow(
-            () -> new EntityNotFoundException("Pas de recette d'id " + recipeId + " trouvée en BDD ?")
+            () -> new RecipeNotFoundException(recipeId)
         );
         return recipesMapper.toDto(recipe);
     }
@@ -47,7 +46,7 @@ public class RecipesService {
         for (IngredientsDto ingredientDto : recipeDto.getIngredients()) {
             Ingredients ingredient = ingredientsRepository.findById(ingredientDto.getId())
             .orElseThrow(
-                () -> new IngredientNotFoundException(ingredientDto.getId()) //sends UNPROCESSABLE ENTITY status
+                () -> new IncorrectIngredientException(ingredientDto.getId()) //sends UNPROCESSABLE ENTITY status
             );
 
             RecipeIngredients ri = new RecipeIngredients(
@@ -69,14 +68,14 @@ public class RecipesService {
     public void deleteRecipeById(Integer recipeId) {
         //TODO check that works also for recipes linked with a shopping list (not the case just yet, must be a mapping error)
         Recipes recipe = recipesRepository.findById(recipeId).orElseThrow(
-            () -> new EntityNotFoundException("Pas de recette d'id " + recipeId + " trouvée en BDD ?")
+            () -> new RecipeNotFoundException(recipeId)
         );
         recipesRepository.delete(recipe);
     }
 
     public RecipesDto updateRecipeById(Integer recipeId, RecipesDto recipe) {
         Recipes existingRecipe = recipesRepository.findById(recipeId)
-            .orElseThrow(() -> new EntityNotFoundException("Pas de recette d'id " + recipeId + " trouvée en BDD."));
+            .orElseThrow(() -> new RecipeNotFoundException(recipeId));
         
         /*
         Set the all the RecipeIngredients in the OneToMany towards Ingredients
@@ -98,7 +97,7 @@ public class RecipesService {
                 existingRecipe,
                 ingredientsRepository.findById(ingredientDto.getId())
                     .orElseThrow(
-                        () -> new IngredientNotFoundException(ingredientDto.getId()) //sends UNPROCESSABLE ENTITY status
+                        () -> new IncorrectIngredientException(ingredientDto.getId()) //sends UNPROCESSABLE ENTITY status
                     ),
                 ingredientDto.getQuantity(),
                 ingredientDto.getUnit()
