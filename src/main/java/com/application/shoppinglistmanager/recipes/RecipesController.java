@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.application.shoppinglistmanager.users.Users;
+import com.application.shoppinglistmanager.users.UsersDto;
+
+import jakarta.persistence.EntityNotFoundException;
+
 @RestController
 @RequestMapping(path="/recipes")
 public class RecipesController {
@@ -57,10 +62,10 @@ public class RecipesController {
         return ResponseEntity.noContent().build();
     }
 
-    // @PutMapping(path = "/{id}")
-    // public ResponseEntity<RecipesDto> updateRecipeById (@RequestBody RecipesDto recipe, @PathVariable Integer id) {
-    //     RecipesDto savedRecipe = RecipesService.updateRecipeById(id, recipe);
-    //     return ResponseEntity.ok(savedRecipe);
-    // }
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<RecipesDto> updateRecipeById (@RequestBody RecipesDto recipe, @PathVariable Integer id) {
+        RecipesDto savedRecipe = recipesService.updateRecipeById(id, recipe);
+        return ResponseEntity.ok(savedRecipe);
+    }
 
 }

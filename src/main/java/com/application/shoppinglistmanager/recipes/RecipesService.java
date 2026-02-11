@@ -74,4 +74,45 @@ public class RecipesService {
         recipesRepository.delete(recipe);
     }
 
+    public RecipesDto updateRecipeById(Integer recipeId, RecipesDto recipe) {
+        Recipes existingRecipe = recipesRepository.findById(recipeId)
+            .orElseThrow(() -> new EntityNotFoundException("Pas de recette d'id " + recipeId + " trouvée en BDD."));
+        
+        /*
+        Set the all the RecipeIngredients in the OneToMany towards Ingredients
+
+        This must be done manually because of Recipes's custom mapping (fields unit and quantity directly into the
+        Recipe's DTO, and not in a sub-DTO corresponding to the DB's tables)
+
+        Additionally, we must use the addIngredient method. Otherwise, if we just set ingredients with a new collection,
+        a "A collection with orphan deletion was no longer referenced by the owning entity instance [ingredients]" error
+        appears, because the current collection is not tracked anymore. 
+        This is also why when clear the ingredient collection beforehand.
+        */
+        existingRecipe.getIngredients().clear();
+
+        //For each of the RecipesDto's ingredients
+        recipe.getIngredients().forEach(ingredientDto -> {
+            //Create the corresponding RecipeIngredients
+            RecipeIngredients recipeIngredient = new RecipeIngredients(
+                existingRecipe,
+                ingredientsRepository.findById(ingredientDto.getId())
+                    .orElseThrow(
+                        () -> new IngredientNotFoundException(ingredientDto.getId()) //sends UNPROCESSABLE ENTITY status
+                    ),
+                ingredientDto.getQuantity(),
+                ingredientDto.getUnit()
+            );
+            //add the RecipeIngredient to the recipe
+            existingRecipe.addIngredient(recipeIngredient);
+        });
+
+        existingRecipe.setInstructions(recipe.getInstructions());
+        existingRecipe.setName(recipe.getName());
+        //servings is not set here because defined in relation to shoppingList
+
+        recipesRepository.save(existingRecipe);
+        return recipesMapper.toDto(existingRecipe);
+    }
+
 }
